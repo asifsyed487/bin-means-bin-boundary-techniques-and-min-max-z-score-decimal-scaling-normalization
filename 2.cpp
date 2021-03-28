@@ -1,5 +1,7 @@
-#include<stdio.h>
-#include<math.h>
+
+#include <bits/stdc++.h>
+
+using namespace std;
 
 float *sorting(float arr[], int n) {
     int i, j, temp;
@@ -41,18 +43,31 @@ float minFromArray(float arr[], int n) {
     return min;
 }
 
-int main() {
-    int n;
+int main()
+{
+    char str[100];
+    gets(str);
     float newmax=1, newmin=0;
     int i, j, choice;
-    printf("\nEnter number of data: ");
-    scanf("%d", &n);
-    printf("\nEnter data: ");
-    float arr[n];
-    float v[n];
-    for(i=0;i<n;i++) {
-        scanf("%f,", &arr[i]);
+    int str_length = strlen(str);
+    float arr[str_length] = { 0 };
+
+    int n = 0;
+
+    for (i = 0; str[i] != '\0'; i++) {
+
+        if (str[i] == ',') {
+             continue;
+        }
+         if (str[i] == ' '){
+            n++;
+        }
+        else {
+            arr[n] = arr[n] * 10 + (str[i] - 48);
+        }
     }
+    n++;
+    float v[n];
     float max = maxFromArray(arr, n);
     float min = minFromArray(arr, n);
     //printf("max = %.f  and min = %.f", max, min);
@@ -69,7 +84,7 @@ int main() {
         }
     printf("\n");
     for(i=0;i<n;i++) {
-        printf("V[%d] = %.1f \n", i, v[i]);
+        printf(" %.1f, ", v[i]);
         }
     }
     else if(choice == 2) {
@@ -78,11 +93,11 @@ int main() {
         for (i = 0; i < n; i++) {
             sum += arr[i];
         }
-        mean = sum / 3;
+        mean = sum / n;
         for (i = 0; i < n; i++) {
             SD += pow(arr[i] - mean, 2);
         }
-        SD = sqrt(SD/3);
+        SD = sqrt(SD/n);
         //printf("\n\n %f \n\n", SD);
 
         for(i=0;i<n;i++) {
@@ -90,7 +105,7 @@ int main() {
         }
         printf("\n");
         for(i=0;i<n;i++) {
-            printf("V[%d] = %f \n", i, v[i]);
+            printf(" %f, ", v[i]);
         }
 
     }
@@ -112,20 +127,15 @@ int main() {
         }
         //printf(" %d ", caught);
         for(i=0;i<n;i++) {
-            v[i] = arr2[i]/pow(10,caught);
+            v[i] = arr[i]/pow(10,caught);
         }
         printf("\n");
         for(i=0;i<n;i++) {
-            printf("V[%d] = %.3f\n", i, v[i]);
+            printf(" %.3f, ", v[i]);
         }
     }
 
 
-    /////////////////////////
 
-
-
-
-
-
+    return 0;
 }
